@@ -74,11 +74,17 @@ if (isRegisteredUser(userEmail)) {
   }
 } else {
   // New user: sign up if both are valid, otherwise say what's wrong
+  // (and what a valid one looks like). If both are wrong, report both.
   if (isValidEmail(userEmail) && isValidPassword(userPassword)) {
     console.log("Signed Up"); // case 3
-  } else if (!isValidEmail(userEmail)) {
-    console.log("Invalid Email"); // case 4
   } else {
-    console.log("Invalid Password"); // case 5
+    if (!isValidEmail(userEmail)) {
+      // case 4
+      console.log("Invalid Email: it must end with @codeimmersives.com and have a name before the @.");
+    }
+    if (!isValidPassword(userPassword)) {
+      // case 5
+      console.log("Invalid Password: it needs at least 8 characters, including an uppercase and a lowercase letter.");
+    }
   }
 }
