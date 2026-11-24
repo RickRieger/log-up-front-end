@@ -62,35 +62,23 @@ const {
 // your code below!
 
 
-
 const userEmail = getInput(1);
 const userPassword = getInput(2);
 
-if (passwordMatches(userEmail, userPassword)) {
-  console.log("Logged In");
+if (isRegisteredUser(userEmail)) {
+  // Existing user: log in or reject the password
+  if (passwordMatches(userEmail, userPassword)) {
+    console.log("Logged In"); // case 1
+  } else {
+    console.log("Password Incorrect"); // case 2
   }
-
-        if (isRegisteredUser(userEmail)) {
-
-          if (!passwordMatches(userEmail, userPassword)) {
-            console.log("Password Incorrect");
-          }
-
-  } 
-
-else {
-
-          if (isValidEmail(userEmail) && isValidPassword(userPassword)) {
-            console.log("Signed Up");
-          } 
-          
-          else if (!isValidEmail(userEmail)) {
-            console.log("Invalid Email");
-          } 
-          
-          else if (!isValidPassword(userPassword)) {
-            console.log("Invalid Password");
-          }
-
-
+} else {
+  // New user: sign up if both are valid, otherwise say what's wrong
+  if (isValidEmail(userEmail) && isValidPassword(userPassword)) {
+    console.log("Signed Up"); // case 3
+  } else if (!isValidEmail(userEmail)) {
+    console.log("Invalid Email"); // case 4
+  } else {
+    console.log("Invalid Password"); // case 5
+  }
 }
